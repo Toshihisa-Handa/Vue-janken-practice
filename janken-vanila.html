@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>基本のじゃんけん</h1>
+    <br>
+    <br>
+<h2>相手の手</h2>
+<h3 id='enemy'>ここにあいての出した手がでる</h3>
+
+<br>
+<br>
+<br>
+<h1 id='judge'>ここに判定が出る</h1>
+
+<br>
+<br>
+<br>
+<h2>自分の手</h2>
+<h3 id='myhand'>ここに自分の手がでる</h3>
+
+<button id='gu'>グー</button>
+<button id='cho'>チョキ</button>
+<button id='pa'>パー</button>
+
+
+
+<script>
+//変数・定数定義
+let enemy = document.querySelector('#enemy');
+let myhand = document.querySelector('#myhand');
+let judge = document.querySelector('#judge');
+const gu = document.querySelector('#gu');
+const cho = document.querySelector('#cho');
+const pa = document.querySelector('#pa');
+let num;
+
+gu.onclick = function(){
+    num = Math.floor(Math.random()*3);
+    myhand.innerHTML='グー'
+    // alert(num);
+   if(num==0){
+    enemy.innerHTML='グー'
+    judge.innerHTML='あいこ'
+   }
+   if(num==1){
+    enemy.innerHTML='チョキ'
+    judge.innerHTML='勝ち'
+   }
+   if(num==2){
+    enemy.innerHTML='パー'
+    judge.innerHTML='負け'
+   }
+   
+}
+
+cho.onclick = function(){
+    num = Math.floor(Math.random()*3);
+    myhand.innerHTML='チョキ'
+    // alert(num);
+   if(num==0){
+    enemy.innerHTML='グー'
+    judge.innerHTML='負け'
+   }
+   if(num==1){
+    enemy.innerHTML='チョキ'
+    judge.innerHTML='あいこ'
+   }
+   if(num==2){
+    enemy.innerHTML='パー'
+    judge.innerHTML='勝ち'
+   }
+   
+}
+
+pa.onclick = function(){
+    num = Math.floor(Math.random()*3);
+    myhand.innerHTML='パー'
+    // alert(num);
+   if(num==0){
+    enemy.innerHTML='グー'
+    judge.innerHTML='勝ち'
+   }
+   if(num==1){
+    enemy.innerHTML='チョキ'
+    judge.innerHTML='負け'
+   }
+   if(num==2){
+    enemy.innerHTML='パー'
+    judge.innerHTML='あいこ'
+   }
+   
+}
+
+
+
+</script>
+</body>
+</html>

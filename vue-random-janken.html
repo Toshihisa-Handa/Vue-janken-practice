@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Vueの練習</h1>
+    <div id="app">
+        <h1>基本のじゃんけん</h1>
+        <br>
+        <br>
+        <h2>相手の手</h2>
+        <h3 >{{changeEnemyHand}}</h3>
+
+        <br>
+        <br>
+        <br>
+        <h1>{{changeResult}}</h1>
+
+        <br>
+        <br>
+        <br>
+        <h2>自分の手</h2>
+        <h3 >{{changeMyHand}}</h3>
+
+        <button  v-on:click='janken(0)'>グー</button>
+        <button v-on:click='janken(1)'>チョキ</button>
+        <button  v-on:click='janken(2)'>パー</button>
+
+
+
+
+
+
+
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+new Vue({
+    el:'#app',
+    data:{
+        enemy:null,
+        result:null,
+        myhand:null
+    },
+    computed:{
+        changeEnemyHand(){
+            if(this.enemy == null)return this.enemy='ここに相手の手がでる'
+            return this.getHand(this.enemy)
+        },
+        changeResult(){
+            if(this.result == null)return this.result='ここに判定が出る。'
+            return this.getResult(this.result)
+        },
+        changeMyHand(){
+            if(this.myhand == null)return this.myhand='ここに自分の手がでる'
+            return this.getHand(this.myhand)
+        },
+    },
+    methods: {
+
+
+
+      getHand(num){
+          switch(num){
+              case 0:
+               return 'グー'
+              case 1:
+               return 'チョキ'
+              case 2:
+               return 'パー'
+          }
+
+      },
+      getResult(num){
+          switch(num){
+              case 0:
+               return '引き分け'
+              case 1:
+               return '負け'
+              case 2:
+               return '勝ち'
+          }
+
+      },
+        
+    //   getRandomHand(){
+    //     return Math.floor(Math.random()*3);
+    //   },
+
+    //    setHands(){
+    //        this.enemy = this.getRandomHand();
+    //        this.myhand = this.getRandomHand();
+    //    },
+
+       getJunkenResult(myhand, enemy){
+         return  (myhand - enemy + 3)%3
+       },
+
+       janken(myNum){
+           this.myhand = myNum
+           this.enemy = Math.floor(Math.random()*3)
+        //    this.setHands();
+           this.result=this.getJunkenResult(this.myhand, this.enemy)
+       }
+
+
+
+    },
+})
+
+
+
+    
+</script>
+</body>
+</html>

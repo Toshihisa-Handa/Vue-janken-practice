@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Vueの練習</h1>
+    <div id="app">
+        <h1>基本のじゃんけん</h1>
+        <br>
+        <br>
+        <h2>相手の手</h2>
+        <h3>{{ displayEnemyHand }}</h3>
+
+        <br>
+        <br>
+        <br>
+        <h1>{{ displayResult }}</h1>
+
+        <br>
+        <br>
+        <br>
+        <h2>自分の手</h2>
+        <h3>{{ displayMyHand }}</h3>
+
+        <button v-on:click='junken'>開始</button>
+        <!-- <button v-on:click='junken'>チョキ</button>
+        <button v-on:click='junken'>パー</button> -->
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+new Vue({
+    el:'#app',
+    data:{
+        enemy:null,
+        result:null,
+        myhand:null
+    },
+    computed: {
+        displayEnemyHand(){
+            if(this.enemy == null)return 'ここに相手の手が出ます'
+            return this.changeHand(this.enemy);
+        },
+        displayResult(){
+            if(this.result == null)return 'ここに判定が出ます'
+            return this.changeResult(this.result);
+        },
+        displayMyHand(){
+            if(this.myhand == null)return 'ここに自分の手が出ます'
+            return this.changeHand(this.myhand);
+        },
+        
+    },
+    methods: {
+        
+    changeHand(num){
+      switch(num){
+          case 0: return 'グー'
+          case 1: return 'チョキ'
+          case 2: return 'パー'
+      }
+    },
+    changeResult(num){
+      switch(num){
+          case 0: return '引き分け'
+          case 1: return '負け'
+          case 2: return '勝ち'
+      }
+    },
+
+    getHand(){
+       return Math.floor(Math.random()*3)
+    },
+
+     setMyHands(){
+         this.enemy = this.getHand()
+         this.myhand = this.getHand()
+     },
+
+
+     getResult(myhand, enemyhand){
+        return  (myhand - enemyhand +3)%3
+     },
+
+     junken(){
+         this.setMyHands()
+         this.result = this.getResult(this.myhand, this.enemy)
+     }
+
+    },
+})
+
+
+
+    
+</script>
+</body>
+</html>
